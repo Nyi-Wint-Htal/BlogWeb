@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+  .cardStyle {
+    @apply flex flex-col gap-y-3 h-auto rounded-2xl object-cover overflow-hidden drop-shadow-lg/30 bg-white;
+  }
+}
