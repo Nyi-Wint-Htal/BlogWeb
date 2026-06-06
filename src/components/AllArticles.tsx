@@ -5,7 +5,6 @@ import RecentArticles from "./RecentArticles";
 import { useEffect, useState } from "react";
 import fetchBlogs from "../services/fetchBlogs";
 import type { Blog } from "../types/blog";
-import type { User } from "../types/user";
 
 const AllArticles = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -14,7 +13,6 @@ const AllArticles = () => {
   const [search, setSearch] = useState("");
   const [tag, setTag] = useState("");
   const tags = [...new Set(blogs.map((blog) => blog.tags[0]))];
-  const [user, setUser] = useState("");
 
   useEffect(() => {
     const loadBlogs = async () => {
