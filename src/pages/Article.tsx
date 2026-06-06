@@ -1,9 +1,30 @@
 import { Link } from "react-router-dom";
-import computer from "../assets/computers.png";
 import logo from "../assets/My Logo.png";
 import AboutAuthor from "../components/AboutAuthor";
+import { useParams } from "react-router-dom";
+import fetchSingleBlog from "../services/fetchSingleBlog";
+import { useEffect, useState } from "react";
+import type { Blog } from "../types/blog";
 
 const Article = () => {
+  const { id } = useParams();
+  const [blog, setBlog] = useState<Blog | null>(null);
+  useEffect(() => {
+    const loadBlog = async () => {
+      try {
+        const data = await fetchSingleBlog(Number(id));
+        setBlog(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadBlog();
+  }, [id]);
+
+  if (!blog) {
+    return <div>Loading</div>;
+  }
+
   return (
     <div className="flex justify-center">
       <div className="p-5 gap-y-5 flex flex-col sm:p-10 max-w-200">
@@ -12,11 +33,11 @@ const Article = () => {
           <p>Back to Blog</p>
         </Link>
         <div className="cardStyle">
-          <img src={computer} />
+          <img src={`https://picsum.photos/id/${blog.id + 10}/700/400`} />
           <div className="p-5 flex flex-col gap-y-5">
-            <h2>Web Development</h2>
+            <h2>{blog.tags[0]}</h2>
             <h1 className="text-3xl md:text-5xl font-extrabold">
-              Optimizing React Performance: Tips and Tricks
+              {blog.title}
             </h1>
             <div className="w-full flex flex-row justify-between items-center gap-x-2">
               <div className="flex gap-x-3">
@@ -36,13 +57,7 @@ const Article = () => {
               <i className="fa-solid fa-share-nodes "></i>
             </div>
             <div className="w-full h-[0.3px] bg-amber-800"></div>
-            <div>
-              React performance optimization is crucial for delivering smooth
-              user experiences. Let's explore practical techniques to make your
-              React apps faster. Understanding Re-renders React re-renders
-              components when state or props change. Understanding this
-              mechanism is the first step to optimization.
-            </div>
+            <div>{blog.body}</div>
           </div>
         </div>
         <AboutAuthor />

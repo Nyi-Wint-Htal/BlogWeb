@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
 type SingleArticleProps = {
+  id: number;
   image: string;
-  tag: string;
+  tags: string[];
   title: string;
   description: string;
   profile: string;
@@ -10,8 +13,9 @@ type SingleArticleProps = {
 };
 
 const SingleArticle = ({
+  id,
   image,
-  tag,
+  tags,
   title,
   description,
   profile,
@@ -20,10 +24,14 @@ const SingleArticle = ({
   time,
 }: SingleArticleProps) => {
   return (
-    <section className="cardStyle">
+    <Link to={`/article/${id}`} className="cardStyle">
       <img src={image} />
       <div className="flex flex-col gap-y-2 px-5">
-        <h2 className="text-sm pl-2">{tag}</h2>
+        <div className="flex flex-row gap-x-1">
+          <h2 className="text-sm pl-2">{tags[0]}</h2>
+          <h2 className="text-sm pl-2">{tags[1]}</h2>
+          <h2 className="text-sm pl-2">{tags[2]}</h2>
+        </div>
         <h1>{title}</h1>
         <p className="line-clamp-3 text-sm">{description}</p>
       </div>
@@ -43,7 +51,7 @@ const SingleArticle = ({
           </div>
         </div>
       </div>
-    </section>
+    </Link>
   );
 };
 

@@ -1,33 +1,34 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import fetchFeaturedBlog from "../services/fetchFeaturedBlog";
+import fetchSingleBlog from "../services/fetchSingleBlog";
+import type { Blog } from "../types/blog";
 
-type blogData = {
-  body: string;
-  tags: string[];
-  title: string;
-};
-
-const FeaturedAritcle = () => {
-  const imageSrc = `https://picsum.photos/700/400?random=1`;
-  const random = Math.floor(Math.random() * 30);
-  const [blog, setBlog] = useState<blogData>({
-    body: "",
-    tags: [""],
-    title: "",
-  });
+const FeaturedArticle = () => {
+  const [blog, setBlog] = useState<Blog | null>(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const loadBlog = async () => {
       try {
-        const data = await fetchFeaturedBlog(random);
+        const random = Math.floor(Math.random() * 30);
+        const data = await fetchSingleBlog(random);
         setBlog(data);
       } catch (error) {
-        console.log(error);
+        setError("Failed to load article");
       }
     };
     loadBlog();
   }, []);
+  let imageSrc = "";
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+  if (!blog) {
+    return <div>Loading...</div>;
+  } else {
+    imageSrc = `https://picsum.photos/id/${blog.id + 10}/700/400`;
+  }
 
   return (
     <div className="flex flex-col md:flex-row md:justify-around md:items-center md:gap-x-10 mt-10 py-5 gap-y-5">
@@ -35,7 +36,10 @@ const FeaturedAritcle = () => {
         <h2 className="text-sm">Featured Article</h2>
         <h1 className="text-4xl md:text-5xl font-extrabold">{blog.title}</h1>
         <p>{blog.body}</p>
-        <Link to="/article" className="flex items-center border p-2 w-30">
+        <Link
+          to={`/article/${blog.id}`}
+          className="flex items-center border p-2 w-30"
+        >
           Read More <i className="fa-solid fa-arrow-right"></i>
         </Link>
       </div>
@@ -46,4 +50,4 @@ const FeaturedAritcle = () => {
   );
 };
 
-export default FeaturedAritcle;
+export default FeaturedArticle;

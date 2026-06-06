@@ -1,15 +1,10 @@
 async function fetchBlogs(limit: number) {
-  try {
-    const response = await fetch(
-      `https://dummyjson.com/posts?limit=${limit}&skip=0&select=title,reactions,userId`,
-    );
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    }
-  } catch (error) {
+  const response = await fetch(`https://dummyjson.com/posts?limit=${limit}`);
+  if (!response.ok) {
     console.log("An error has occured");
   }
+  const data = await response.json();
+  return data.posts;
 }
 
 export default fetchBlogs;
