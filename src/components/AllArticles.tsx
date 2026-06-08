@@ -5,32 +5,32 @@ import RecentArticles from "./RecentArticles";
 import { useEffect, useState } from "react";
 import fetchBlogs from "../services/fetchBlogs";
 import type { Blog } from "../types/blog";
+import { authors } from "../utils/authors";
+import { getDate } from "../utils/getDate";
 
 const AllArticles = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [error, setError] = useState("");
-  const [numBlogs, setNumBlogs] = useState(6);
+  const [skip, setSkip] = useState(0);
+  const limit = 6;
   const [search, setSearch] = useState("");
   const [tag, setTag] = useState("");
   const tags = [...new Set(blogs.map((blog) => blog.tags[0]))];
-
   useEffect(() => {
     const loadBlogs = async () => {
       try {
-        const data = await fetchBlogs(numBlogs);
-        setBlogs(data);
+        const data = await fetchBlogs(limit, skip);
+        if (skip === 0) {
+          setBlogs(data);
+        } else {
+          setBlogs((prev) => [...prev, ...data]);
+        }
       } catch (error) {
         setError("Failed to load the articles");
       }
     };
     loadBlogs();
-  }, [numBlogs]);
-
-  const currentDate = new Date().toLocaleString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  }, [skip]);
 
   if (error) {
     return <div>{error}</div>;
@@ -45,6 +45,7 @@ const AllArticles = () => {
   if (tag) {
     filteredBlogs = filteredBlogs.filter((blog) => blog.tags.includes(tag));
   }
+
   return (
     <div className="flex flex-col gap-y-5 justify-center">
       <div className="flex flex-col min-w-full justify-center items-center gap-y-5">
@@ -89,21 +90,24 @@ const AllArticles = () => {
                 title={blog.title}
                 description={blog.body}
                 profile={myLogo}
-                name="Samuel Jackson"
-                date={currentDate}
+                name={authors[(blog.id - 1) % authors.length]}
+                date={getDate(blog.id)}
                 time="12:00PM"
               />
             );
           })}
-
-          <div className="w-full justify-center items-center text-center lg:col-span-2">
-            <button
-              className="border px-6 py-2 rounded-xl"
-              onClick={() => setNumBlogs((prev) => prev + 6)}
-            >
-              Load More Articles
-            </button>
-          </div>
+          {blogs.length < 251 && (
+            <div className="w-full justify-center items-center text-center lg:col-span-2">
+              <button
+                className="border px-6 py-2 rounded-xl"
+                onClick={() => {
+                  setSkip((prev) => prev + 6);
+                }}
+              >
+                Load More Articles
+              </button>
+            </div>
+          )}
         </div>
         <div className="flex flex-col gap-y-5">
           <AboutAuthor />

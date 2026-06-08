@@ -1,14 +1,17 @@
+import { Link } from "react-router-dom";
+
 type RecentSingleArticleProps = {
+  id: number;
   title: string;
   date: string;
 };
 
-const RecentSingleArticle = ({ title, date }: RecentSingleArticleProps) => {
+const RecentSingleArticle = ({ id, title, date }: RecentSingleArticleProps) => {
   return (
-    <div className="flex flex-col gap-y-2">
+    <Link to={`/article/${id}`} className="flex flex-col gap-y-2">
       <h1 className="text-sm">{title}</h1>
       <p className="text-xs">{date}</p>
-    </div>
+    </Link>
   );
 };
 

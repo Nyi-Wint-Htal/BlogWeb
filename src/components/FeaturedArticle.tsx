@@ -35,7 +35,7 @@ const FeaturedArticle = () => {
       <div className="flex flex-col gap-y-5 py-5">
         <h2 className="text-sm">Featured Article</h2>
         <h1 className="text-4xl md:text-5xl font-extrabold">{blog.title}</h1>
-        <p>{blog.body}</p>
+        <p className="line-clamp-2">{blog.body}</p>
         <Link
           to={`/article/${blog.id}`}
           className="flex items-center border p-2 w-30"

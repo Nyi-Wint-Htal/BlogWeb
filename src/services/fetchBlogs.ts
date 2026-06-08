@@ -1,5 +1,7 @@
-async function fetchBlogs(limit: number) {
-  const response = await fetch(`https://dummyjson.com/posts?limit=${limit}`);
+async function fetchBlogs(limit: number, skip: number) {
+  const response = await fetch(
+    `https://dummyjson.com/posts?limit=${limit}&skip=${skip}`,
+  );
   if (!response.ok) {
     console.log("An error has occured");
   }

@@ -14,11 +14,9 @@ const NavBar = () => {
           </div>
           <h1>DevBlog</h1>
           <div className="hidden md:visible md:flex flex-row gap-x-5 pl-7 items-center justify-center text-md  text-center">
-            <h1>Home</h1>
-            <h1>Blog</h1>
-            <h1>Categories</h1>
-            <h1>About</h1>
-            <h1>Contact</h1>
+            <Link to={"/"}>Home</Link>
+            <Link to={"/about-us"}>About</Link>
+            <Link to={"/contact-us"}>Contact</Link>
           </div>
         </div>
         <div className="flex justify-center items-center text-center">

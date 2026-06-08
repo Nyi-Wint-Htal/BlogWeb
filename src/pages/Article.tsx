@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import fetchSingleBlog from "../services/fetchSingleBlog";
 import { useEffect, useState } from "react";
 import type { Blog } from "../types/blog";
+import { authors } from "../utils/authors";
+import { getDate } from "../utils/getDate";
 
 const Article = () => {
   const { id } = useParams();
@@ -43,10 +45,11 @@ const Article = () => {
               <div className="flex gap-x-3">
                 <img src={logo} className="object-cover w-8" />
                 <div className="flex flex-col">
-                  <p>Lisa Park</p>
+                  <p>{authors[blog.id % authors.length]}</p>
                   <div className="flex flex-row gap-x-2">
                     <div>
-                      <i className="fa-regular fa-calendar"></i> May 20, 2026
+                      <i className="fa-regular fa-calendar"></i>
+                      {getDate(blog.id)}
                     </div>
                     <div>
                       <i className="fa-regular fa-clock"></i> 9 min
