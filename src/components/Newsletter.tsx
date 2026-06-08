@@ -14,7 +14,7 @@ const Newsletter = () => {
           className="text-sm w-full px-3 sm:w-70 py-2"
         />
         <button className="text-sm border w-full py-2 rounded-xl sm:w-30">
-          Subscribe
+          Coming Soon...
         </button>
       </div>
     </div>

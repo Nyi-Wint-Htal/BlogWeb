@@ -10,7 +10,7 @@ const FeaturedArticle = () => {
   useEffect(() => {
     const loadBlog = async () => {
       try {
-        const random = Math.floor(Math.random() * 30);
+        const random = Math.floor(Math.random() * 30) + 1;
         const data = await fetchSingleBlog(random);
         setBlog(data);
       } catch (error) {

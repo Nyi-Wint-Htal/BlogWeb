@@ -3,7 +3,7 @@ async function fetchBlogs(limit: number, skip: number) {
     `https://dummyjson.com/posts?limit=${limit}&skip=${skip}`,
   );
   if (!response.ok) {
-    console.log("An error has occured");
+    throw new Error("Could not fetch the blogs");
   }
   const data = await response.json();
   return data.posts;

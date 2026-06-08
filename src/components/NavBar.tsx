@@ -31,10 +31,8 @@ const NavBar = () => {
       {open && (
         <div className="flex flex-col items-start justify-center gap-y-4 py-4 px-2 border-b bg-white min-w-screen">
           <Link to="/">Home</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/categories">Categories</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/about-us">About</Link>
+          <Link to="/contact-us">Contact</Link>
         </div>
       )}
     </main>

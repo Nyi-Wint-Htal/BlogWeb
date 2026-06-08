@@ -7,8 +7,10 @@ import fetchBlogs from "../services/fetchBlogs";
 import type { Blog } from "../types/blog";
 import { authors } from "../utils/authors";
 import { getDate } from "../utils/getDate";
+import { aboutAuthors } from "../utils/aboutAuthors";
 
 const AllArticles = () => {
+  const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [error, setError] = useState("");
   const [skip, setSkip] = useState(0);
@@ -19,12 +21,14 @@ const AllArticles = () => {
   useEffect(() => {
     const loadBlogs = async () => {
       try {
+        setLoading(true);
         const data = await fetchBlogs(limit, skip);
         if (skip === 0) {
           setBlogs(data);
         } else {
           setBlogs((prev) => [...prev, ...data]);
         }
+        setLoading(false);
       } catch (error) {
         setError("Failed to load the articles");
       }
@@ -96,21 +100,45 @@ const AllArticles = () => {
               />
             );
           })}
-          {blogs.length < 251 && (
-            <div className="w-full justify-center items-center text-center lg:col-span-2">
-              <button
-                className="border px-6 py-2 rounded-xl"
-                onClick={() => {
-                  setSkip((prev) => prev + 6);
-                }}
-              >
-                Load More Articles
-              </button>
-            </div>
-          )}
+          <div className="w-full justify-center items-center text-center lg:col-span-2">
+            <button
+              disabled={blogs.length >= 250}
+              className="border px-6 py-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => {
+                setSkip((prev) => prev + 6);
+              }}
+            >
+              {loading ? "Loading..." : "Load More Articles"}
+              {loading && (
+                <svg
+                  className="inline-block animate-spin ml-2 h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    opacity="0.25"
+                  />
+                  <path
+                    d="M22 12a10 10 0 0 1-10 10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
         <div className="flex flex-col gap-y-5">
-          <AboutAuthor />
+          <AboutAuthor
+            name="Phoenix"
+            imageId={26}
+            description={aboutAuthors[5]}
+          />
           <RecentArticles />
         </div>
       </div>

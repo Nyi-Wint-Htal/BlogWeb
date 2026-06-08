@@ -18,7 +18,6 @@ const SingleArticle = ({
   tags,
   title,
   description,
-  profile,
   name,
   date,
   time,
@@ -37,7 +36,10 @@ const SingleArticle = ({
       </div>
       <div className="flex flex-row justify-around px-3 py-5 text-center items-center border-t">
         <div className="flex flex-row items-center gap-x-1 ">
-          <img src={profile} className="w-8 object-cover border rounded-4xl" />
+          <img
+            src={`https://picsum.photos/id/${id + 35}/200`}
+            className="w-8 object-cover border rounded-4xl"
+          />
           <p className="text-xs">{name}</p>
         </div>
         <div className="flex flex-row items-center justify-center min-w-fit gap-x-1">
