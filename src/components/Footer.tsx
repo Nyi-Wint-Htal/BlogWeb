@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
-import myLogo from "../assets/My Logo.png";
+import logo from "../assets/InsightHubLogo.png";
 
 const Footer = () => {
   return (
     <div className="flex flex-col bg-[#121827] text-white w-screen px-3 pt-10 items-start md:items-center gap-y-4">
       <div className="flex flex-col md:grid md:grid-cols-3 gap-x-10 md:justify-center md:items-start">
         <div className="w-full flex flex-col md:col-span-2 items-start gap-y-5">
-          <div className="flex justify-center items-center text-center gap-x-2">
-            <div className="w-7 object-contain bg-white rounded-2xl">
-              <img src={myLogo} alt="My Logo" />
+          <div className="flex justify-center items-center text-center gap-x-1">
+            <div className=" object-cover w-20 rounded-2xl">
+              <img src={logo} alt="My Logo" />
             </div>
-            <h1>DevBlog</h1>
+            <h1>InsightHub</h1>
           </div>
           <p>
             A modern developer blog sharing insights, tutorials, and best

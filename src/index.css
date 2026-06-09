@@ -2,6 +2,9 @@
 
 @layer components {
   .cardStyle {
-    @apply flex flex-col gap-y-3 h-auto rounded-2xl object-cover overflow-hidden drop-shadow-lg/30 bg-white;
+    @apply flex flex-col gap-y-3 h-auto rounded-2xl object-cover overflow-hidden drop-shadow-sm/20 bg-white;
+  }
+  .tagStyle {
+    @apply text-sm px-3 py-1 w-fit rounded-2xl text-[#4F46E5] bg-[#E8EAFE];
   }
 }

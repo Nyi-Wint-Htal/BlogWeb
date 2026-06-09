@@ -26,29 +26,31 @@ const Contact = () => {
       <div className="flex flex-col gap-y-5 md:grid md:grid-cols-2 gap-x-10">
         <div className="flex flex-col gap-y-5">
           <h1 className="text-3xl font-bold">Get in Touch</h1>
-          <p className="text-sm">
+          <p className="text-sm text-gray-700">
             Have a question or want to work together? We'd love to hear from
             you.
           </p>
           <div className="flex flex-row gap-x-3 items-center">
-            <i className="fa-regular fa-envelope text-lg border px-1.5 py-2 rounded-md"></i>
+            <i className="fa-regular fa-envelope text-indigo-600 text-lg border px-1.5 py-2 rounded-md"></i>
             <div className="flex flex-col gap-y-1">
-              <h2 className="text-md font-semibold">Email</h2>
-              <p className="text-sm">nyiwinthtalnn@gmail.com</p>
+              <h2 className="text-md font-semibold">Gmail</h2>
+              <p className="text-sm text-gray-600">nyiwinthtalnn@gmail.com</p>
             </div>
           </div>
           <div className="flex flex-row gap-x-3 items-center">
-            <i className="fa-regular fa-envelope text-lg border px-1.5 py-2 rounded-md"></i>
+            <i className="fa-solid fa-phone text-lg text-indigo-600 border px-1.5 py-2 rounded-md"></i>
             <div className="flex flex-col gap-y-1">
-              <h2 className="text-md font-semibold">Email</h2>
-              <p className="text-sm">nyiwinthtalnn@gmail.com</p>
+              <h2 className="text-md font-semibold">Phone</h2>
+              <p className="text-sm text-gray-600">+(66)-981405576</p>
             </div>
           </div>
           <div className="flex flex-row gap-x-3 items-center">
-            <i className="fa-regular fa-envelope text-lg border px-1.5 py-2 rounded-md"></i>
+            <i className="fa-solid fa-location-dot text-indigo-600 text-lg border px-1.5 py-2 rounded-md"></i>
             <div className="flex flex-col gap-y-1">
-              <h2 className="text-md font-semibold">Email</h2>
-              <p className="text-sm">nyiwinthtalnn@gmail.com</p>
+              <h2 className="text-md font-semibold">Location</h2>
+              <p className="text-sm text-gray-600">
+                Thailand, Pathum Thani, Lak Hok
+              </p>
             </div>
           </div>
         </div>
@@ -70,7 +72,7 @@ const Contact = () => {
                 id="userName"
                 placeholder="Your name"
                 required
-                className="px-3 py-2 border rounded-lg text-sm"
+                className="px-3 py-2 border rounded-lg text-sm outline-gray-600"
               />
             </div>
             <div className="flex flex-col gap-y-2">
@@ -82,8 +84,8 @@ const Contact = () => {
                 type="email"
                 name="email"
                 id="email"
-                placeholder="Your Gmail..."
-                className="px-3 py-2 border rounded-lg text-sm"
+                placeholder="your@gmail.com"
+                className="px-3 py-2 border rounded-lg text-sm outline-gray-600"
               />
             </div>
             <div className="flex flex-col gap-y-2">
@@ -93,14 +95,14 @@ const Contact = () => {
               <textarea
                 name="message"
                 id="message"
-                placeholder="Enter a message..."
+                placeholder="Your message..."
                 required
-                className="px-3 py-2 border rounded-lg text-sm h-30"
+                className="px-3 py-2 border rounded-lg text-sm h-30 outline-gray-600"
               />
             </div>
             <button
               type="submit"
-              className="text-sm border px-3 py-2 rounded-xl"
+              className="font-light px-4.5 py-2.5 gap-x-2 w-full rounded-xl bg-linear-to-r from-[#4F46E5] to-[#5B3DF5] text-white shadow-lg shadow-indigo-500/25 hover:scale-105 duration-300 transition-all ease-out inset-shadow-xs inset-shadow-indigo-300/50 hover:from-[#5B3DF5] hover:to-[#6D28D9] active:scale-95"
               disabled={loading}
             >
               {loading ? "Sending..." : "Send Message"}

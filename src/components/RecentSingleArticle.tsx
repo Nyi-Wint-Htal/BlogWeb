@@ -9,8 +9,8 @@ type RecentSingleArticleProps = {
 const RecentSingleArticle = ({ id, title, date }: RecentSingleArticleProps) => {
   return (
     <Link to={`/article/${id}`} className="flex flex-col gap-y-2">
-      <h1 className="text-sm">{title}</h1>
-      <p className="text-xs">{date}</p>
+      <h1 className="text-sm font-medium">{title}</h1>
+      <p className="text-xs text-gray-500">{date}</p>
     </Link>
   );
 };

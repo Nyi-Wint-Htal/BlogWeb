@@ -12,7 +12,7 @@ const RecentArticles = () => {
       try {
         const data = await fetchBlogs(3, 0);
         setBlogs(data);
-      } catch (error) {
+      } catch {
         setError("Could not fetch the blogs");
       }
     };
@@ -28,9 +28,9 @@ const RecentArticles = () => {
 
   return (
     <div className="cardStyle p-5 gap-y-3">
-      <div className="flex flex-row gap-x-2 items-center">
-        <i className="fa-solid fa-arrow-trend-up"></i>
-        <h1>Recent Posts</h1>
+      <div className="flex flex-row gap-x-2 items-center pb-3">
+        <i className="fa-solid fa-arrow-trend-up text-indigo-500"></i>
+        <h1 className="font-semibold text-md">Recent Posts</h1>
       </div>
       {blogs.map((blog) => {
         return (

@@ -14,26 +14,30 @@ const Article = () => {
   const [error, setError] = useState("");
   useEffect(() => {
     if (!id) {
-      setError("Arcticle not found!");
       return;
     }
     const loadBlog = async () => {
       try {
         const data = await fetchSingleBlog(Number(id));
         setBlog(data);
-      } catch (error) {
+      } catch {
         setError("Article Not Found!");
       }
     };
     loadBlog();
   }, [id]);
 
+  if (!id) {
+    return <div>Article not found!</div>;
+  }
   if (error) {
     return <div>{error}</div>;
   }
   if (!blog) {
     return <div>Loading</div>;
   }
+  const blogReadTime = Math.floor(blog.body.length / 90);
+
   const author = authors[(blog.id - 1) % authors.length];
   return (
     <div className="flex justify-center">
@@ -45,9 +49,11 @@ const Article = () => {
         <div className="cardStyle">
           <img src={`https://picsum.photos/id/${blog.id + 10}/700/400`} />
           <div className="p-5 flex flex-col gap-y-5">
-            <h2>
-              {blog.tags[0]}, {blog.tags[1]}, {blog.tags[2]}
-            </h2>
+            <div className="flex flex-row gap-x-1">
+              <h2 className="tagStyle ">{blog.tags[0]}</h2>
+              <h2 className="tagStyle">{blog.tags[1]}</h2>
+              <h2 className="tagStyle">{blog.tags[2]}</h2>
+            </div>
             <h1 className="text-3xl md:text-5xl font-extrabold">
               {blog.title}
             </h1>
@@ -58,21 +64,21 @@ const Article = () => {
                   className="object-cover border w-10 rounded-4xl"
                 />
                 <div className="flex flex-col">
-                  <p>{author}</p>
-                  <div className="flex flex-row gap-x-2">
+                  <p className="font-medium">{author}</p>
+                  <div className="flex flex-row gap-x-2 text-sm text-gray-500">
                     <div>
                       <i className="fa-regular fa-calendar"></i>
                       {getDate(blog.id)}
                     </div>
                     <div>
-                      <i className="fa-regular fa-clock"></i> 9 min
+                      <i className="fa-regular fa-clock"></i> {blogReadTime} min
                     </div>
                   </div>
                 </div>
               </div>
-              <i className="fa-solid fa-share-nodes "></i>
+              <i className="fa-solid fa-share-nodes hover:bg-gray-500/10 w-fit h-fit p-1 rounded-md"></i>
             </div>
-            <div className="w-full h-[0.3px] bg-amber-800"></div>
+            <div className="w-full h-[0.1px] bg-gray-500/15"></div>
             <div>{blog.body}</div>
           </div>
         </div>

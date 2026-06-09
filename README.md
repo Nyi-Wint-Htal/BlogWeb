@@ -1,73 +1,101 @@
-# React + TypeScript + Vite
+# InsightHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+InsightHub is a responsive blog website built with React, TypeScript, Vite, Tailwind CSS, and React Router. It includes dynamic article fetching, article detail pages, search and tag filtering, recent posts, a contact form, and a polished responsive layout.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Add live demo link here.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Responsive blog homepage
+- Featured article section
+- Article cards with tags, author details, dates, and read time
+- Dynamic article detail pages
+- Search articles by title
+- Filter articles by tag
+- Load more pagination
+- Recent posts sidebar
+- About page
+- Contact page with Web3Forms submission
+- Follow/unfollow author state stored in `localStorage`
+- Custom favicon and branding
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- DummyJSON API
+- Web3Forms
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Install dependencies:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+Run lint checks:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```txt
+src/
+  components/   Reusable UI components
+  pages/        Route pages
+  services/     API fetch helpers
+  types/        TypeScript types
+  utils/        Static author/date helpers
+  assets/       Local image assets
+```
+
+## API
+
+Blog posts are fetched from the DummyJSON posts API:
+
+```txt
+https://dummyjson.com/posts
+```
+
+Images are generated using Picsum image URLs based on article IDs.
+
+## Contact Form
+
+The contact form submits through Web3Forms. The form collects name, email, and message, then shows success or error feedback after submission.
+
+## Status
+
+Portfolio project complete.
+
+Verified with:
+
+```bash
+npm run lint
+npm run build
 ```
