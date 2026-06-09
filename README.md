@@ -4,7 +4,8 @@ InsightHub is a responsive blog website built with React, TypeScript, Vite, Tail
 
 ## Live Demo
 
-blog-web-three-sigma.vercel.app
+[blog-web-three-sigma.vercel.app
+](https://blog-web-three-sigma.vercel.app/)
 
 ## Features
 
